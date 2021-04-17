@@ -19,7 +19,7 @@ public class Unit : MonoBehaviour
             if (value == 1 || value == -1)
                 team = value;
             else
-                throw new System.Exception("Unit team set to unsafe value of " + value);
+                throw new System.Exception("UNIT ERROR: team set to unsafe value of " + value);
         }
     }
 
@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private int health = 1;
     [SerializeField] private int attackPower = 1;
     [SerializeField] private int totalCooldown;
-    public int TotalCooldown { get; }
+    public int TotalCooldown { get { return totalCooldown; } }
 
     [Header("Pulse Settings")]
     [SerializeField] private float pulseMinScale;
@@ -45,18 +45,22 @@ public class Unit : MonoBehaviour
 
     public void Start()
     {
+        // Get reference to Audio Manager
         audioManager = FindObjectOfType<AudioManager>();
         
-        startingXScale = transform.localScale.x;
-        startingYScale = transform.localScale.y;
-
-        goal = transform.position.x * -1;
-
+        // Get reference to Score
         GameObject scoreSprite = GameObject.Find("Score");
         if (scoreSprite != null)
             score = scoreSprite.GetComponent<Score>();
         else
-            Debug.Log("ERROR MISSING SCORE");
+            throw new System.Exception("UNIT ERROR: Missing Score Gameobject");
+
+        // Remember scale for pulse animation
+        startingXScale = transform.localScale.x;
+        startingYScale = transform.localScale.y;
+
+        // Set up goal checking
+        goal = transform.position.x * -1;
     }
 
     public virtual void Update()
@@ -76,17 +80,17 @@ public class Unit : MonoBehaviour
     {
         // rb.position = new Vector2(rb.position.x + (moveSpeed * Time.deltaTime * team), 
         //                                  rb.position.y);
-        Vector3 force = Team == 1? Vector3.right*moveSpeed : Vector3.left*moveSpeed;
+        Vector3 force = team == 1? Vector3.right*moveSpeed : Vector3.left*moveSpeed;
         rb.AddForce(force);
     }
 
     public void CheckGoal()
     {
-        if (Team == 1)
+        if (team == 1)
         {
             if (transform.position.x > goal)
             {
-                score.Point(Team, value);
+                score.Point(team, value);
                 ReadyDeath();
             }
         }
@@ -94,7 +98,7 @@ public class Unit : MonoBehaviour
         {
             if (transform.position.x < goal)
             {
-                score.Point(Team, value);
+                score.Point(team, value);
                 ReadyDeath();
             }
         }
@@ -133,13 +137,12 @@ public class Unit : MonoBehaviour
         var main = p.GetComponent<ParticleSystem>().main;
         main.startColor = GetComponent<SpriteRenderer>().color;
 
-
         Destroy(gameObject);
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.GetComponent<Unit>().Team != Team)
+        if (other.collider.GetComponent<Unit>().Team != team)
         {
             Unit enemyUnit = other.collider.GetComponent<Unit>();
             enemyUnit.Damage(attackPower);

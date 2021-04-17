@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class CooldownDisplay : MonoBehaviour
 {
-    public Selector selector;
     public GameObject unitSelector;
     public int selectedUnit = 0;
     public int numUnits;
 
     private SpriteRenderer[] renderers;
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Get references to the SpriteRenderers of each cooldown display icon
         renderers = new SpriteRenderer[numUnits];
         int index = 0;
         // NOTE: has 1 extra transform for the selector at the end
@@ -23,26 +22,22 @@ public class CooldownDisplay : MonoBehaviour
                 renderers[index] = childTransform.gameObject.GetComponent<SpriteRenderer>();
             index++;
         }
+
+        // Set each to the correct color by team
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateColor(int whichUnit, Unit unit, int cooldown)
     {
-        // Update colors of display
-        for (int i = 0; i < numUnits; i++)
-            UpdateColor(renderers[i], selector.units[i], selector.cooldowns[i]);
-    }
-
-    private void UpdateColor(SpriteRenderer sr, Unit unit, int cooldown)
-    {
+        SpriteRenderer sr = renderers[whichUnit];
         float alpha = (float)cooldown / unit.TotalCooldown;
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha);
     }
 
-    public void MoveUnitSelector(int direction)
+    public void MoveUnitSelector(int direction, int team)
     {
         // reverse direction if on right side
-        direction *= selector.Team == 1? 1 : -1;
+        direction *= team == 1? 1 : -1;
 
         // too far off the beginning
         if (selectedUnit + direction < 0)
@@ -55,15 +50,15 @@ public class CooldownDisplay : MonoBehaviour
             selectedUnit += direction;
 
         // move selector
-        Select(selectedUnit);
+        Select(selectedUnit, team);
     }
 
-    public void Select(int unit)
+    public void Select(int unit, int team)
     {
         selectedUnit = unit;
 
         // set selector position
         Transform sel = unitSelector.transform;
-        sel.position = new Vector3((-8 * selector.Team) + selectedUnit * (.5f * selector.Team), sel.position.y, sel.position.z);
+        sel.position = new Vector3((-8 * team) + selectedUnit * (.5f * team), sel.position.y, sel.position.z);
     }
 }
