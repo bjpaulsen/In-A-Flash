@@ -22,9 +22,6 @@ public class CooldownDisplay : MonoBehaviour
                 renderers[index] = childTransform.gameObject.GetComponent<SpriteRenderer>();
             index++;
         }
-
-        // Set each to the correct color by team
-        
     }
 
     public void UpdateColor(int whichUnit, Unit unit, int cooldown)

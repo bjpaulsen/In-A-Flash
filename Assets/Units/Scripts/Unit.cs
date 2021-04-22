@@ -26,8 +26,8 @@ public class Unit : MonoBehaviour
     [Header("Unit Attributes")]
     [SerializeField] private float value = 87;
     [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private int health = 1;
-    [SerializeField] private int attackPower = 1;
+    [SerializeField] private float health = 1;
+    [SerializeField] private float attackPower = 1;
     [SerializeField] private int totalCooldown;
     public int TotalCooldown { get { return totalCooldown; } }
 
@@ -110,10 +110,10 @@ public class Unit : MonoBehaviour
             ReadyDeath();
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= .1f)
         {
             ReadyDeath();
         }
@@ -142,7 +142,7 @@ public class Unit : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.GetComponent<Unit>().Team != team)
+        if (other.collider.GetComponent<Unit>() && other.collider.GetComponent<Unit>().Team != team)
         {
             Unit enemyUnit = other.collider.GetComponent<Unit>();
             enemyUnit.Damage(attackPower);

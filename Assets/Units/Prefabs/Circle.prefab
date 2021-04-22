@@ -53,7 +53,7 @@ MonoBehaviour:
   moveSpeed: 2.3
   health: 2
   attackPower: 2
-  totalCooldown: 240
+  totalCooldown: 200
   pulseMinScale: 0.9
   pulseMaxScale: 1.1
   pulsesPerSecond: 1.75

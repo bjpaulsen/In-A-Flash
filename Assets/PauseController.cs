@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PauseController : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameObject menuCanvas;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject leftVictory;
+    [SerializeField] private GameObject rightVictory;
     [HideInInspector] public static bool paused = false;
+    private static bool gameActive = true;
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause")) 
+        if (Input.GetButtonDown("Pause") && gameActive) 
         {
             if (paused)
                 Unpause();
@@ -22,13 +28,31 @@ public class PauseController : MonoBehaviour
     {
         paused = true;
         Time.timeScale = 0;
+        menuCanvas.SetActive(true);
         pauseMenu.SetActive(true);
+        optionsMenu.SetActive(false);
     }
 
     public void Unpause()
     {
         paused = false;
+        gameActive = true;
         Time.timeScale = 1;
+        menuCanvas.SetActive(false);
         pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+    }
+
+    public void WinGame(int team)
+    {
+        gameActive = false;
+        paused = true;
+        Time.timeScale = 0;
+        menuCanvas.SetActive(true);
+
+        if (team == 1)
+            leftVictory.SetActive(true);
+        else
+            rightVictory.SetActive(true);
     }
 }

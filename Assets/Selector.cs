@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Selector : MonoBehaviour
 {
-    [Header("References to Components")]
+    [Header("References")]
     [SerializeField] private Color color;
     [SerializeField] private CooldownDisplay cooldownDisplay;
+    [SerializeField] private Score score;
     
     [Header("Player Settings")]
     [SerializeField] private int team;
     [SerializeField] private Unit[] units;
+    [SerializeField] private Unit[] upgrades;
+
     private int[] cooldowns;
     public int[] Cooldowns
     {
@@ -27,8 +30,9 @@ public class Selector : MonoBehaviour
     private float spawnPosition;
     private int maxLane = 2;
     private int minLane = -4;
+    private bool upgradeAvailable = false;
 
-    void Awake()
+    private void Awake()
     {
         // Set up cooldowns
         cooldowns = new int[units.Length];
@@ -41,7 +45,7 @@ public class Selector : MonoBehaviour
         spawnPosition = -9.75f * team;
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
         // Update cooldowns
         for (int i = 0; i < cooldowns.Length; i++)
             if (cooldowns[i] < units[i].TotalCooldown)
@@ -49,7 +53,7 @@ public class Selector : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // Don't control selector if paused
         if (PauseController.paused)
@@ -69,24 +73,26 @@ public class Selector : MonoBehaviour
 
         // Spawn units
         int selected = cooldownDisplay.selectedUnit;
-        if (Input.GetButton(name + "Spawn") && cooldowns[selected] == units[selected].TotalCooldown)
-        {
+        if (Input.GetButton(name + "Spawn") && cooldowns[selected] >= units[selected].TotalCooldown)
             Spawn(units[selected]);
-        }
+
+        // Upgrade units
+        if (upgradeAvailable && Input.GetButton(name + "Upgrade"))
+            Upgrade(selected);
 
         // Update Cooldown Display
         for (int i = 0; i < units.Length; i++)
             cooldownDisplay.UpdateColor(i, units[i], cooldowns[i]);
     }
 
-    void Move(float moveDistance)
+    private void Move(float moveDistance)
     {
         transform.position = new Vector3(transform.position.x, 
                                          transform.position.y + moveDistance, 
                                          transform.position.z);
     }
 
-    void Spawn(Unit unitPrefab)
+    private void Spawn(Unit unitPrefab)
     {
         // Spawn the unit
         Unit unit = Instantiate(unitPrefab, 
@@ -101,5 +107,23 @@ public class Selector : MonoBehaviour
         // Reset cooldowns
         for (int i = 0; i < cooldowns.Length; i++)
             cooldowns[i] = 0;
+    }
+
+    public void EnableUpgrade()
+    {
+        upgradeAvailable = true;
+    }
+
+    private void Upgrade(int selected)
+    {
+        // Use up upgrade
+        upgradeAvailable = false;
+        score.ResetUpgradeMeter(team);
+
+        // Replace the unit with an upgraded one
+        units[selected] = upgrades[selected];
+
+        // Spawn the upgraded unit
+        Spawn(units[selected]);
     }
 }
