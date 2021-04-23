@@ -1039,6 +1039,7 @@ GameObject:
   - component: {fileID: 300912009}
   - component: {fileID: 300912011}
   - component: {fileID: 300912010}
+  - component: {fileID: 300912012}
   m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
@@ -1103,6 +1104,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300912008}
   m_CullTransparentMesh: 0
+--- !u!114 &300912012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300912008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c506712533db94353a6642b14b0e0dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &314110546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,7 +2608,7 @@ Transform:
   m_GameObject: {fileID: 603958875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.5, y: 0, z: 0}
-  m_LocalScale: {x: 27, y: 27, z: 1}
+  m_LocalScale: {x: 2.8, y: 2.86, z: 1}
   m_Children: []
   m_Father: {fileID: 330704081}
   m_RootOrder: 1
@@ -2640,7 +2653,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 954e2acf0e5c34c02a6d0543499e4217, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13158729d88fa4a7b905d89c75395f56, type: 3}
   m_Color: {r: 0.2509804, g: 0.59607846, b: 0.9372549, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2662,6 +2675,7 @@ GameObject:
   - component: {fileID: 658685246}
   - component: {fileID: 658685248}
   - component: {fileID: 658685247}
+  - component: {fileID: 658685249}
   m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
@@ -2726,6 +2740,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658685245}
   m_CullTransparentMesh: 0
+--- !u!114 &658685249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658685245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c506712533db94353a6642b14b0e0dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &737844234
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,6 +3612,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentBackground: {fileID: 314110547}
   scoreHolder: {fileID: 2114482353}
+  scoreMiddle: {fileID: 820069756}
+  leftUpgradeMeter: {fileID: 1813560306}
+  leftUpgradeMeterArrow: {fileID: 658685247}
+  rightUpgradeMeter: {fileID: 1907624618}
+  rightUpgradeMeterArrow: {fileID: 300912010}
   nightModeToggleUI: {fileID: 1892777234}
   volumeSlider: {fileID: 361534416}
   audioMixer: {fileID: 24100000, guid: 8757be3ff6d8a4c2a8b0baca34912da4, type: 2}
@@ -4849,7 +4880,7 @@ Transform:
   m_GameObject: {fileID: 1649195615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5, y: 0, z: 0}
-  m_LocalScale: {x: 27, y: 27, z: 1}
+  m_LocalScale: {x: 2.8, y: 2.86, z: 1}
   m_Children: []
   m_Father: {fileID: 366784654}
   m_RootOrder: 1
@@ -4894,7 +4925,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 954e2acf0e5c34c02a6d0543499e4217, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13158729d88fa4a7b905d89c75395f56, type: 3}
   m_Color: {r: 0.84313726, g: 0.46666667, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5193,6 +5224,7 @@ GameObject:
   - component: {fileID: 1813560305}
   - component: {fileID: 1813560307}
   - component: {fileID: 1813560306}
+  - component: {fileID: 1813560308}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -5257,6 +5289,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813560304}
   m_CullTransparentMesh: 0
+--- !u!114 &1813560308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813560304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c506712533db94353a6642b14b0e0dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1876889617
 GameObject:
   m_ObjectHideFlags: 0
@@ -5616,6 +5660,7 @@ GameObject:
   - component: {fileID: 1907624617}
   - component: {fileID: 1907624619}
   - component: {fileID: 1907624618}
+  - component: {fileID: 1907624620}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -5680,6 +5725,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907624616}
   m_CullTransparentMesh: 0
+--- !u!114 &1907624620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907624616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c506712533db94353a6642b14b0e0dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1919832026
 GameObject:
   m_ObjectHideFlags: 0
@@ -5994,7 +6051,7 @@ GameObject:
   - component: {fileID: 2002466387}
   - component: {fileID: 2002466386}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Upgrade Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

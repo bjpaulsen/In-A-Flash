@@ -7,6 +7,8 @@ public class Unit : MonoBehaviour
     [Header("References To Components")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject particles;
+    [SerializeField] private Sprite icon;
+    public Sprite Icon { get { return icon; } }
     private Score score;
     protected AudioManager audioManager;
 

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3608925076631258257}
   particles: {fileID: 8384896245763091704, guid: 7bd92decd7f954654b9d8f5dd0c5c7b8, type: 3}
+  icon: {fileID: 21300000, guid: 17745f38b0ddf49e7bca0c6d5eb2fc47, type: 3}
   value: 45
   moveSpeed: 1.8
   health: 1

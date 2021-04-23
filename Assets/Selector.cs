@@ -123,6 +123,9 @@ public class Selector : MonoBehaviour
         // Replace the unit with an upgraded one
         units[selected] = upgrades[selected];
 
+        // Replace the cooldown icon with an upgraded one
+        cooldownDisplay.upgradeIcon(selected, units[selected].Icon);
+
         // Spawn the upgraded unit
         Spawn(units[selected]);
     }

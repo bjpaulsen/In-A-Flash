@@ -58,4 +58,9 @@ public class CooldownDisplay : MonoBehaviour
         Transform sel = unitSelector.transform;
         sel.position = new Vector3((-8 * team) + selectedUnit * (.5f * team), sel.position.y, sel.position.z);
     }
+
+    public void upgradeIcon(int selected, Sprite newIcon)
+    {
+        renderers[selected].sprite = newIcon;
+    }
 }
