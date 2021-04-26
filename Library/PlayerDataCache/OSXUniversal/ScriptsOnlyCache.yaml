@@ -42,6 +42,14 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
+    Unity.Timeline.Editor.dll:
+    - TimelineProjectSettings
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -75,6 +83,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 72
       Script: {instanceID: 0}
     - Class: 74
@@ -106,6 +116,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13294}
     - Class: 114
+      Script: {instanceID: 13362}
+    - Class: 114
       Script: {instanceID: 13450}
     - Class: 114
       Script: {instanceID: 13532}
@@ -116,7 +128,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14200}
     - Class: 114
+      Script: {instanceID: 14630}
+    - Class: 114
+      Script: {instanceID: 14652}
+    - Class: 114
       Script: {instanceID: 15152}
+    - Class: 114
+      Script: {instanceID: 15484}
     - Class: 114
       Script: {instanceID: 15642}
     - Class: 114
@@ -126,6 +144,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15918}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -225,6 +245,10 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14200}
     - Class: 114
+      Script: {instanceID: 14630}
+    - Class: 114
+      Script: {instanceID: 15032}
+    - Class: 114
       Script: {instanceID: 15152}
     - Class: 114
       Script: {instanceID: 15332}
@@ -243,6 +267,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 15918}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -1051,7 +1077,7 @@ ScriptsOnlyBuild:
     className: CinemachineInputProvider
   - hash:
       serializedVersion: 2
-      Hash: cd5115dd0eedc1da01f198bbe608254c
+      Hash: 1fe8f6c7d0b277e303553419177d42f7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Score
@@ -1245,4 +1271,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenuScene.unity
   - Assets/Scenes/PlayScene.unity
-  playerPath: /Users/benpaulsen/Desktop/In A Flash Test 4.app
+  playerPath: /Users/benpaulsen/Desktop/In A Flash 4:26:21.app
