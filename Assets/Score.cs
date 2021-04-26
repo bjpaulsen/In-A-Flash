@@ -11,8 +11,8 @@ public class Score : MonoBehaviour
     [SerializeField] private Selector rightSelector;
     [SerializeField] private Slider leftUpgradeMeter;
     [SerializeField] private Slider rightUpgradeMeter;
-    [SerializeField] private Image leftArrow;
-    [SerializeField] private Image rightArrow;
+    [SerializeField] private GameObject leftArrow;
+    [SerializeField] private GameObject rightArrow;
 
     [Header("Settings")]
     [SerializeField] private int leftUpgradeThreshold;
@@ -78,17 +78,11 @@ public class Score : MonoBehaviour
     {
         leftUpgradeMeter.value = leftUpgrade;
         leftUpgradeMeter.maxValue = leftUpgradeThreshold;
-        if (leftUpgrade >= leftUpgradeThreshold)
-            leftArrow.color = Options.LEFT_COLOR;
-        else
-            leftArrow.color = Options.TRANSPARENT;
+        leftArrow.SetActive(leftUpgrade >= leftUpgradeThreshold);
 
         rightUpgradeMeter.value = rightUpgrade;
         rightUpgradeMeter.maxValue = rightUpgradeThreshold;
-        if (rightUpgrade >= rightUpgradeThreshold)
-            rightArrow.color = Options.RIGHT_COLOR;
-        else
-            rightArrow.color = Options.TRANSPARENT;
+        rightArrow.SetActive(rightUpgrade >= rightUpgradeThreshold);
     }
 
     public void ResetUpgradeMeter(int team) 
