@@ -2943,7 +2943,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: press x to upgrade
+  m_text: press z to upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e13256ea02cf741a2a93fc1597d76baf, type: 2}
   m_sharedMaterial: {fileID: -572124877756321111, guid: e13256ea02cf741a2a93fc1597d76baf, type: 2}

@@ -55,4 +55,18 @@ public class PauseController : MonoBehaviour
         else
             rightVictory.SetActive(true);
     }
+
+    public void BeginTutorial() 
+    {
+        paused = true;
+        gameActive = false;
+        Time.timeScale = 0;
+    }
+
+    public void EndTutorial() 
+    {
+        paused = false;
+        gameActive = true;
+        Time.timeScale = 1;
+    }
 }

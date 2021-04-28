@@ -18,8 +18,13 @@ public class Score : MonoBehaviour
     [SerializeField] private int leftUpgradeThreshold;
     [SerializeField] private int rightUpgradeThreshold;
 
-    private int leftUpgrade = 0;
-    private int rightUpgrade = 0;
+    private int leftUpgradeProgress = 0;
+    private int rightUpgradeProgress = 0;
+
+    private int leftUpgradeTotal = 0;
+    private int rightUpgradeTotal = 0;
+
+    private static int numUnits = 3;
 
     // Constants
     private Vector3 pivot = new Vector3(0f, 2.45f, -5f);
@@ -45,27 +50,35 @@ public class Score : MonoBehaviour
         }
         
         // Count towards upgrades
-        if (team == -1 && leftUpgrade < leftUpgradeThreshold)
+        if (team == -1 && leftUpgradeTotal < numUnits && leftUpgradeProgress < leftUpgradeThreshold)
         {
-            leftUpgrade += 1;
-            if (leftUpgrade >= leftUpgradeThreshold)
+            leftUpgradeProgress += 1;
+            if (leftUpgradeProgress >= leftUpgradeThreshold)
             {
-                // make it harder for right to upgrade
-                rightUpgradeThreshold += 1;
+                // Record upgrade
+                leftUpgradeTotal += 1;
 
-                // let left upgrade a unit
+                // Make it harder for right to upgrade unless they have an upgrade ready
+                if (rightUpgradeProgress < rightUpgradeThreshold)
+                    rightUpgradeThreshold += 1;
+
+                // Let left upgrade a unit
                 leftSelector.EnableUpgrade();
             }
         }
-        else if (team == 1 && rightUpgrade < rightUpgradeThreshold)
+        else if (team == 1 && rightUpgradeTotal < numUnits && rightUpgradeProgress < rightUpgradeThreshold)
         {
-            rightUpgrade += 1;
-            if (rightUpgrade >= rightUpgradeThreshold)
+            rightUpgradeProgress += 1;
+            if (rightUpgradeProgress >= rightUpgradeThreshold)
             {
-                // make it harder for left to upgrade
-                leftUpgradeThreshold += 1;
+                // Record upgrade
+                rightUpgradeTotal += 1;
 
-                // let right upgrade a unit
+                // Make it harder for left to upgrade unless they have an upgrade ready
+                if (leftUpgradeProgress < leftUpgradeThreshold)
+                    leftUpgradeThreshold += 1;
+
+                // Let right upgrade a unit
                 rightSelector.EnableUpgrade();
             }
         }
@@ -76,21 +89,21 @@ public class Score : MonoBehaviour
 
     private void UpdateUpgradeMeters() 
     {
-        leftUpgradeMeter.value = leftUpgrade;
+        leftUpgradeMeter.value = leftUpgradeProgress;
         leftUpgradeMeter.maxValue = leftUpgradeThreshold;
-        leftArrow.SetActive(leftUpgrade >= leftUpgradeThreshold);
+        leftArrow.SetActive(leftUpgradeProgress >= leftUpgradeThreshold);
 
-        rightUpgradeMeter.value = rightUpgrade;
+        rightUpgradeMeter.value = rightUpgradeProgress;
         rightUpgradeMeter.maxValue = rightUpgradeThreshold;
-        rightArrow.SetActive(rightUpgrade >= rightUpgradeThreshold);
+        rightArrow.SetActive(rightUpgradeProgress >= rightUpgradeThreshold);
     }
 
     public void ResetUpgradeMeter(int team) 
     {
         if (team == 1)
-            leftUpgrade = 0;
+            leftUpgradeProgress = 0;
         else
-            rightUpgrade = 0;
+            rightUpgradeProgress = 0;
         UpdateUpgradeMeters();
     }
 

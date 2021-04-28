@@ -30,7 +30,10 @@ public class Selector : MonoBehaviour
     private float spawnPosition;
     private int maxLane = 2;
     private int minLane = -4;
+    
     private bool upgradeAvailable = false;
+    private bool[] upgradesCompleted = new bool[3];
+
 
     private void Awake()
     {
@@ -116,8 +119,13 @@ public class Selector : MonoBehaviour
 
     private void Upgrade(int selected)
     {
+        // Don't upgrade something twice
+        if (upgradesCompleted[selected])
+            return;
+
         // Use up upgrade
         upgradeAvailable = false;
+        upgradesCompleted[selected] = true;
         score.ResetUpgradeMeter(team);
 
         // Replace the unit with an upgraded one
