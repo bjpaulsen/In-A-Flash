@@ -45,6 +45,9 @@ public class PauseController : MonoBehaviour
 
     public void WinGame(int team)
     {
+        if (!gameActive)
+            return;
+        
         gameActive = false;
         paused = true;
         Time.timeScale = 0;
@@ -58,9 +61,7 @@ public class PauseController : MonoBehaviour
 
     public void BeginTutorial() 
     {
-        paused = true;
         gameActive = false;
-        Time.timeScale = 0;
     }
 
     public void EndTutorial() 
